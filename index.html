@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App store</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+</head>
+<body>
+
+<div class="container">
+<nav>
+<div class="logo">
+<img src="./images/4rh3h0we3rpft4ybjp0p9l67bth8tifp.jpg">
+</div>
+
+<div class="menu">
+<ul>
+<li>Bosh menyu</li>
+<li>Aksiyalar</li>
+<li>+998 98 632 82 82</li>
+</ul>
+</div>
+</nav>
+
+<div class="hero">
+</div>
+</div>
+
+
+<!-- SWIPER -->
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+    <img src="./images/d6f82733-b89f-4eab-bebc-b4a298b7c696.png" class="ramazon">
+</div>
+<div class="swiper-slide">
+    <img src="./images/PHq5qv8sbEPoRkSKqyFNHAG0u5sfq1s6dSoHbYnZFK5YovLOjzzvvAUGMzvi.jpg">
+</div>
+<div class="swiper-slide">
+    <img src="./images/iuuXk0JufCY1V2d8xp9v6bccNmawQPLy0qVlyoVQrt6d20xLzS4XZR8QyXNg.jpg">
+</div>
+
+
+</div>
+
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  loop: true,
+
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+</script>
+
+<div class="container">
+  <div class="cards">
+    <div class="card">
+      <img src="./img/teelefonlar.png" alt="">
+      <p>Iphone</p>
+    </div>
+    <div class="card">
+      <img src="./img/samsung.png" alt="">
+      <p>Samsung</p>
+    </div>
+    <div class="card">
+      <img src="./img/android.png" alt="">
+      <p>Xiomi</p>
+    </div>
+    <div class="card">
+      <img src="./img/Mac.png" alt="">
+      <p>Macbook</p>
+    </div>
+    <div class="card">
+      <img src="./img/nout buklar.png" alt="">
+      <p>Gaming Noutbuklar</p>
+    </div>
+     <div class="card">
+      <img src="./img/watch.png" alt="">
+      <p>Aqlli soatlar</p>
+    </div>
+    <div class="card">
+      <img src="./img/aippods.png" alt="">
+      <p>Quloqchinlar</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

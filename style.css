@@ -1,0 +1,58 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+list-style:none;
+}
+
+.container{
+margin:0 auto;
+max-width:1100px;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+margin-top:30px;
+}
+
+.logo img{
+width:100px;
+}
+
+.menu ul{
+display:flex;
+gap:30px;
+}
+
+.hero img{
+margin-top:50px;
+width:100%;
+border-radius:20px;
+}
+
+/* SWIPER */
+.swiper{
+width:1100px;
+margin:60px auto;
+}
+
+.swiper-slide img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+.ramazon {
+    height: 380px;
+}
+
+.card img{
+    width: 128px;
+}
+.cards{
+    display: flex;
+    margin-bottom: 50px;
+    text-align: center;
+    gap: 30px;
+}
+
