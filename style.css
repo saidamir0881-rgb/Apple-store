@@ -285,3 +285,25 @@ width:90px;
 }
 
 }
+
+
+.samsung{
+padding:70px 0;
+background:#f8fafc;
+}
+
+ .h1{
+text-align:center;
+font-size:34px;
+margin-bottom:60px;
+}
+
+.samsung h1::after{
+content:"";
+width:70px;
+height:4px;
+background:#0071e3;
+display:block;
+margin:10px auto;
+border-radius:5px;
+}
