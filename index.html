@@ -1,246 +1,786 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>App store</title>
-
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>AppStore | Premium Gadjetlar</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+/* ================= RESET & GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    background: #f4f6f9;
+    color: #111;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 92%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ================= NAVBAR (asl holat saqlandi) ================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo img {
+    width: 110px;
+    object-fit: contain;
+}
+
+.search-box {
+    flex: 1;
+    max-width: 350px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 40px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    background: white;
+}
+
+.search-box input:focus {
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+}
+
+.menu ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+}
+
+.menu li {
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+.menu li:hover {
+    color: #0071e3;
+}
+
+/* savatcha ikonkasi va counter */
+.cart-icon {
+    position: relative;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #1c1c1e;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #0071e3;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= SWIPER banner ================= */
+.swiper {
+    width: 100%;
+    max-width: 1280px;
+    height: 420px;
+    margin: 30px auto;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ================= CATEGORY CARDS ================= */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 25px;
+    margin: 60px 0 40px;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 18px 12px;
+    border-radius: 24px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.card img {
+    width: 65px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    background: #ffffff;
+}
+
+/* section umumiy */
+.section {
+    padding: 60px 0;
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 32px;
+}
+
+.section-alt {
+    background: #f8fafc;
+}
+
+.category-title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.category-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #0071e3;
+    display: block;
+    margin: 12px auto 0;
+    border-radius: 4px;
+}
+
+/* product grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+/* product card */
+.product-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+    transition: 0.25s;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 40px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    max-width: 210px;
+    height: 210px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 12px 0 6px;
+    font-weight: 600;
+}
+
+.price {
+    color: #0071e3;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #8e8e93;
+    font-size: 0.85rem;
+    margin-left: 8px;
+    font-weight: normal;
+}
+
+.badge {
+    display: inline-block;
+    background: #ff3b30;
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+}
+
+.btn-add {
+    background: linear-gradient(135deg, #0071e3, #00a1ff);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 40px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 180px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-add:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #005bbb, #0088e0);
+    box-shadow: 0 8px 16px rgba(0,113,227,0.3);
+}
+
+/* savatcha modal */
+.cart-modal {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100%;
+    background: white;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: 0.35s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+}
+
+.cart-modal.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.remove-item {
+    color: #ff3b30;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.cart-total {
+    border-top: 2px solid #ddd;
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.checkout-btn {
+    background: #28a745;
+    border: none;
+    padding: 14px;
+    border-radius: 40px;
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* Toast xabar */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1c1c1e;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-size: 14px;
+    z-index: 1100;
+    opacity: 0;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+/* back to top */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    background: #0071e3;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 99;
+}
+
+.scroll-top.show {
+    opacity: 1;
+}
+
+/* filter */
+.filter-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #e9ecef;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #0071e3;
+    color: white;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+    .swiper { height: 320px; }
+    .products-grid { gap: 25px; }
+}
+
+@media (max-width: 768px) {
+    nav { flex-direction: column; align-items: stretch; text-align: center; }
+    .search-box { max-width: 100%; }
+    .menu ul { justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .cart-icon { margin-left: 0; }
+    .swiper { height: 220px; border-radius: 20px; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .product-card img { height: 150px; }
+    .category-title { font-size: 28px; }
+    .cart-modal { width: 320px; }
+}
+
+@media (max-width: 480px) {
+    .swiper { height: 170px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .cart-modal { width: 100%; right: -100%; }
+}
+
+/* kategoriyalar bo'limi hover */
+.card a { display: block; }
+</style>
 </head>
 <body>
 
 <div class="container">
-<nav>
-<div class="logo">
-<img src="./images/4rh3h0we3rpft4ybjp0p9l67bth8tifp.jpg">
+    <nav>
+        <div class="logo">
+            <img src="./images/4rh3h0we3rpft4ybjp0p9l67bth8tifp.jpg" alt="Logo" onerror="this.src='https://placehold.co/110x40?text=AppStore'">
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Mahsulotni qidirish...">
+        </div>
+        <div class="menu">
+            <ul>
+                <li>Bosh menyu</li>
+                <li><a href="./products.html">Mahsulotlar</a></li>
+                <li>Aksiyalar</li>
+                <li><div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div></li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
-<div class="menu">
-<ul>
-<li>Bosh menyu</li>
-<li>Aksiyalar</li>
-<li>+998 98 632 82 82</li>
-</ul>
-</div>
-</nav>
-
-<div class="hero">
-</div>
-</div>
-
-
-<!-- SWIPER -->
+<!-- Swiper hero -->
 <div class="swiper mySwiper">
-<div class="swiper-wrapper">
-
-<div class="swiper-slide">
-    <img src="./images/d6f82733-b89f-4eab-bebc-b4a298b7c696.png" class="ramazon">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="./images/d6f82733-b89f-4eab-bebc-b4a298b7c696.png" alt="banner1" onerror="this.src='https://placehold.co/1200x420?text=Premium+Tech'"></div>
+        <div class="swiper-slide"><img src="./images/PHq5qv8sbEPoRkSKqyFNHAG0u5sfq1s6dSoHbYnZFK5YovLOjzzvvAUGMzvi.jpg" alt="banner2" onerror="this.src='https://placehold.co/1200x420?text=Super+Aksiya'"></div>
+        <div class="swiper-slide"><img src="./images/iuuXk0JufCY1V2d8xp9v6bccNmawQPLy0qVlyoVQrt6d20xLzS4XZR8QyXNg.jpg" alt="banner3" onerror="this.src='https://placehold.co/1200x420?text=Yangiliklar'"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 </div>
-<div class="swiper-slide">
-    <img src="./images/PHq5qv8sbEPoRkSKqyFNHAG0u5sfq1s6dSoHbYnZFK5YovLOjzzvvAUGMzvi.jpg">
-</div>
-<div class="swiper-slide">
-    <img src="./images/iuuXk0JufCY1V2d8xp9v6bccNmawQPLy0qVlyoVQrt6d20xLzS4XZR8QyXNg.jpg">
-</div>
-
-
-</div>
-
-<div class="swiper-pagination"></div>
-<div class="swiper-button-prev"></div>
-<div class="swiper-button-next"></div>
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script>
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 1,
-  spaceBetween: 20,
-  loop: true,
-
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-</script>
 
 <div class="container">
-  <div class="cards">
-    <div class="card">
-      <a href="#iphone">
-        <img src="./img/teelefonlar.png" alt="">
-        <p>Iphone</p>
-      </a>
+    <!-- KATEGORIYALAR (original cardlar saqlanib, yangilandi) -->
+    <div class="cards" id="categoryFilter">
+        <div class="card" data-cat="all"><img src="./img/teelefonlar.png" alt="all"><p>Barchasi</p></div>
+        <div class="card" data-cat="iphone"><img src="./img/teelefonlar.png" alt="iphone"><p>iPhone</p></div>
+        <div class="card" data-cat="samsung"><img src="./img/samsung.png" alt="samsung"><p>Samsung</p></div>
+        <div class="card" data-cat="xiaomi"><img src="./img/android.png" alt="xiaomi"><p>Xiaomi</p></div>
+        <div class="card" data-cat="macbook"><img src="./img/Mac.png" alt="macbook"><p>Macbook</p></div>
+        <div class="card" data-cat="gaming"><img src="./img/nout buklar.png" alt="gaming"><p>Gaming Noutbuklar</p></div>
+        <div class="card" data-cat="watch"><img src="./img/watch.png" alt="watch"><p>Aqlli soatlar</p></div>
+        <div class="card" data-cat="earphones"><img src="./img/aippods.png" alt="earphones"><p>Quloqchinlar</p></div>
     </div>
-    <div class="card">
-      <a href="#samsung">
-        <img src="./img/samsung.png" alt="">
-        <p>Samsung</p>
-      </a>
-    </div>
-    <div class="card">
-      <img src="./img/android.png" alt="">
-      <p>Xiomi</p>
-    </div>
-    <div class="card">
-      <img src="./img/Mac.png" alt="">
-      <p>Macbook</p>
-    </div>
-    <div class="card">
-      <img src="./img/nout buklar.png" alt="">
-      <p>Gaming Noutbuklar</p>
-    </div>
-     <div class="card">
-      <img src="./img/watch.png" alt="">
-      <p>Aqlli soatlar</p>
-    </div>
-    <div class="card">
-      <img src="./img/aippods.png" alt="">
-      <p>Quloqchinlar</p>
-    </div>
-  </div>
 
-
-
-  <div class="iphone" id="iphone">
-    <h1>Iphone</h1>
-    <div class="csss">
-      <div class="css">
-          <img src="./imgg/enJqv2OKgJ3P21uliSSvfsnmjk7tZpX1gF0zlGdGl9BIJWAO2KZIVk7oNXdu.jpg" alt="">
-        <h1>Iphone 17 pro max Silver</h1>
-         <p>Narxi:20 700 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/iphone blue.png" alt="">
-        <h1>Iphone 17 pro max Deep Blue</h1>
-         <p>Narxi:20 700 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/orange.jpg" alt="">
-        <h1>Iphone 17 pro max Deep Blue</h1>
-         <p>Narxi:20 700 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-       <div class="css">
-        <img src="./imgg/16 desert.jpg" alt="">
-        <h1>Apple iPhone 16 Pro Max Desert Titanium</h1>
-         <p>16 990 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-       <div class="css">
-        <img src="./imgg/16 white.jpg" alt="">
-        <h1>Apple iPhone 16 Pro Max White titanium</h1>
-         <p>17 800 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/16 titan.jpg" alt="">
-        <h1>Apple iPhone 16 Pro Max titanium</h1>
-         <p>17 800 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/15blach.webp" alt="">
-        <h1>iPhone 15, Black, 128GB</h1>
-         <p>10 009 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-       <div class="css">
-        <img src="./imgg/15pink.webp" alt="">
-        <h1>iPhone 15, Pink, 128GB  </h1>
-         <p>10 289 160 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/15blue.webp" alt="">
-        <h1>iPhone 15, Blue, 128GB  </h1>
-         <p>9 868 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/15gren.webp" alt="">
-        <h1>iPhone 15, Green, 128GB  </h1>
-         <p>10 570 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-      <div class="css">
-        <img src="./imgg/15 yell.webp" alt="">
-        <h1>iPhone 15, Yellow, 128GB  </h1>
-         <p>10 570 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
+    <!-- Filter qo'shimcha (narx va mashhur) -->
+    <div class="filter-bar" id="extraFilters">
+        <button class="filter-btn active" data-filter="all">Hammasi</button>
+        <button class="filter-btn" data-filter="cheap">Arzon (10M dan kam)</button>
+        <button class="filter-btn" data-filter="expensive">Premium (15M+)</button>
     </div>
-  </div>
-  <div class="samsung" id="samsung">
-    <h1 class="h1">Samsung</h1>
-    <div class="csss">
-       <div class="css">
-        <img src="./imgg/s22.webp" alt="">
-        <h1>Samsung S22 ultra 128GB  </h1>
-         <p>10 570 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-       <div class="css">
-        <img src="./imgg/s23.webp" alt="">
-        <h1>Samsung S23 ultra 128GB  </h1>
-         <p>12 400 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
-       <div class="css">
-        <img src="./imgg/15 yell.webp" alt="">
-        <h1>iPhone 15, Yellow, 128GB  </h1>
-         <p>10 570 000 so'm</p>
-         <button class="btn7">
-             Savatga qoshish
-         </button>
-      </div>
+
+    <!-- IPHONE SECTION (kategoriya) -->
+    <div id="iphone-cat" class="section">
+        <h2 class="category-title">📱 iPhone flagshiplar</h2>
+        <div class="products-grid" id="iphoneGrid"></div>
     </div>
-  </div>
+
+    <div id="samsung-cat" class="section section-alt">
+        <h2 class="category-title">✨ Samsung Galaxy</h2>
+        <div class="products-grid" id="samsungGrid"></div>
+    </div>
+
+    <div id="xiaomi-cat" class="section">
+        <h2 class="category-title">⚡ Xiaomi / Poco</h2>
+        <div class="products-grid" id="xiaomiGrid"></div>
+    </div>
+
+    <div id="macbook-cat" class="section section-alt">
+        <h2 class="category-title">💻 Macbook & Mac</h2>
+        <div class="products-grid" id="macbookGrid"></div>
+    </div>
+
+    <div id="gaming-cat" class="section">
+        <h2 class="category-title">🎮 Gaming Noutbuklar</h2>
+        <div class="products-grid" id="gamingGrid"></div>
+    </div>
+
+    <div id="watch-cat" class="section section-alt">
+        <h2 class="category-title">⌚ Aqlli soatlar</h2>
+        <div class="products-grid" id="watchGrid"></div>
+    </div>
+
+    <div id="earphones-cat" class="section">
+        <h2 class="category-title">🎧 Quloqchinlar & Audio</h2>
+        <div class="products-grid" id="earphonesGrid"></div>
+    </div>
 </div>
+
+<!-- Savatcha Modal -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-header"><h3>🛍️ Savatcha</h3><span id="closeCart" style="cursor:pointer; font-size:24px;">&times;</span></div>
+    <div id="cartItemsList" class="cart-items"></div>
+    <div class="cart-total">Jami: <span id="cartTotalAmount">0</span> so'm</div>
+    <button id="checkoutBtn" class="checkout-btn">✅ Rasmiylashtirish</button>
+</div>
+<div id="toastMsg" class="toast">➕ Qo'shildi</div>
+<div id="backToTop" class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+// ================= MAHSULOTLAR (kengaytirilgan) =================
+const productsDB = [
+    // iPhone
+    { id:1, name:"iPhone 17 Pro Max Silver", price:20700000, oldPrice:22500000, category:"iphone", img:"./imgg/enJqv2OKgJ3P21uliSSvfsnmjk7tZpX1gF0zlGdGl9BIJWAO2KZIVk7oNXdu.jpg", badge:"Yangilik" },
+    { id:2, name:"iPhone 17 Pro Max Deep Blue", price:20700000, oldPrice:0, category:"iphone", img:"./imgg/iphone blue.png" },
+    { id:3, name:"iPhone 17 Pro Max Orange", price:20900000, category:"iphone", img:"./imgg/orange.jpg" },
+    { id:4, name:"iPhone 16 Pro Max Desert", price:16990000, oldPrice:18500000, category:"iphone", img:"./imgg/16 desert.jpg" },
+    { id:5, name:"iPhone 16 Pro Max White", price:17800000, category:"iphone", img:"./imgg/16 white.jpg" },
+    { id:6, name:"iPhone 16 Pro Max Titanium", price:17800000, category:"iphone", img:"./imgg/16 titan.jpg" },
+    { id:7, name:"iPhone 15 Black 128GB", price:10009000, category:"iphone", img:"./imgg/15blach.webp" },
+    { id:8, name:"iPhone 15 Pink 128GB", price:10289160, category:"iphone", img:"./imgg/15pink.webp" },
+    { id:9, name:"iPhone 15 Blue 128GB", price:9868000, category:"iphone", img:"./imgg/15blue.webp" },
+    { id:10, name:"iPhone 15 Green", price:10570000, category:"iphone", img:"./imgg/15gren.webp" },
+    { id:11, name:"iPhone 15 Yellow", price:10570000, category:"iphone", img:"./imgg/15 yell.webp" },
+    // Samsung
+    { id:12, name:"Samsung S22 Ultra 128GB", price:10570000, category:"samsung", img:"./imgg/s22.webp" },
+    { id:13, name:"Samsung S23 Ultra 128GB", price:12400000, category:"samsung", img:"./imgg/s23.webp" },
+    { id:14, name:"Samsung S24 Ultra 256GB", price:15990000, oldPrice:17990000, category:"samsung", img:"https://assets.chakana.uz/product/items/desktop/65ae69a90db0e.png" },
+    { id:15, name:"Samsung Z Fold5", price:22990000, category:"samsung", img:"https://images.samsung.com/is/image/samsung/p6pim/uz/sm-f946bzkdeuz/gallery/uz-galaxy-z-fold5-sm-f946-sm-f946bzkdeuz-535844234?$684_547_PNG$" },
+    // Xiaomi
+    { id:16, name:"Xiaomi 13 Pro", price:11990000, category:"xiaomi", img:"https://i02.appmifile.com/876_operator_sg/09/04/2023/903c4ca4b95c61a3c6ddb6f37277e3ce.png" },
+    { id:17, name:"Xiaomi 14 Ultra", price:14999000, category:"xiaomi", img:"https://i01.appmifile.com/webfile/globalimg/7/6AF7C9F8-3A9A-4F3C-8F4A-4C1B0E2F7A8C.png" },
+    { id:18, name:"Poco F6 Pro", price:7999000, category:"xiaomi", img:"https://i02.appmifile.com/webfile/globalimg/poCO/F6/pro_black.png" },
+    // Macbook
+    { id:19, name:"MacBook Air M2", price:12990000, category:"macbook", img:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba13-m2-silver" },
+    { id:20, name:"MacBook Pro 14 M3", price:21990000, category:"macbook", img:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310" },
+    // Gaming
+    { id:21, name:"ASUS ROG Strix G16", price:18990000, category:"gaming", img:"https://dlcdnwebimgs.asus.com/gain/EEF9F1F9-5F3E-4B1F-8C1D-3A1B1F1C1E1F/w717" },
+    { id:22, name:"Lenovo Legion 5", price:15990000, category:"gaming", img:"https://p3-ofp.static.pub/fes/cms/2023/03/23/j2n3m4l5.png" },
+    // Aqlli soatlar
+    { id:23, name:"Apple Watch S9", price:5499000, category:"watch", img:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-watch-s9-select-202309" },
+    { id:24, name:"Samsung Galaxy Watch6", price:3999000, category:"watch", img:"https://images.samsung.com/is/image/samsung/p6pim/uz/sm-r940nzkaeuz" },
+    // Quloqchinlar
+    { id:25, name:"AirPods Pro 2", price:3299000, category:"earphones", img:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-pro-2-select-202309" },
+    { id:26, name:"Samsung Buds2 Pro", price:1999000, category:"earphones", img:"https://images.samsung.com/is/image/samsung/p6pim/uz/sm-r510nzwaeuz" },
+    { id:27, name:"Xiaomi Buds 4 Pro", price:1299000, category:"earphones", img:"https://i02.appmifile.com/webfile/globalimg/xiaomi/buds4pro/black.png" }
+];
+
+let cart = [];
+let currentFilter = "all"; // price filter
+let currentCatFilter = "all"; // category filter
+
+// DOM elementlari
+function renderProducts() {
+    const iphoneContainer = document.getElementById("iphoneGrid");
+    const samsungContainer = document.getElementById("samsungGrid");
+    const xiaomiContainer = document.getElementById("xiaomiGrid");
+    const macbookContainer = document.getElementById("macbookGrid");
+    const gamingContainer = document.getElementById("gamingGrid");
+    const watchContainer = document.getElementById("watchGrid");
+    const earphonesContainer = document.getElementById("earphonesGrid");
+    
+    const containers = {
+        iphone: iphoneContainer,
+        samsung: samsungContainer,
+        xiaomi: xiaomiContainer,
+        macbook: macbookContainer,
+        gaming: gamingContainer,
+        watch: watchContainer,
+        earphones: earphonesContainer
+    };
+    
+    for (let cat in containers) {
+        let filtered = productsDB.filter(p => p.category === cat);
+        filtered = applyPriceFilter(filtered);
+        if(containers[cat]) containers[cat].innerHTML = filtered.map(p => createProductCard(p)).join('');
+    }
+}
+
+function applyPriceFilter(products) {
+    if(currentFilter === "cheap") return products.filter(p => p.price < 10000000);
+    if(currentFilter === "expensive") return products.filter(p => p.price >= 15000000);
+    return products;
+}
+
+function createProductCard(p) {
+    const badgeHtml = p.badge ? `<span class="badge">${p.badge}</span>` : '';
+    const oldPriceHtml = p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} so'm</span>` : '';
+    return `
+        <div class="product-card" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-img="${p.img}">
+            <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/210x210?text=No+Image'">
+            ${badgeHtml}
+            <h3>${p.name}</h3>
+            <div class="price">${p.price.toLocaleString()} so'm ${oldPriceHtml}</div>
+            <button class="btn-add add-to-cart"><i class="fas fa-cart-plus"></i> Savatga</button>
+        </div>
+    `;
+}
+
+function updateCartUI() {
+    const cartCountSpan = document.getElementById("cartCount");
+    const cartItemsDiv = document.getElementById("cartItemsList");
+    const cartTotalSpan = document.getElementById("cartTotalAmount");
+    let total = 0;
+    cartItemsDiv.innerHTML = '';
+    cart.forEach((item, idx) => {
+        total += item.price * item.quantity;
+        cartItemsDiv.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}" width="50">
+                <div class="cart-item-info"><strong>${item.name}</strong><br>${item.price.toLocaleString()} so'm<br>x ${item.quantity}</div>
+                <div><i class="fas fa-trash-alt remove-item" data-index="${idx}" style="color:#ff3b30; cursor:pointer;"></i></div>
+            </div>
+        `;
+    });
+    cartTotalSpan.innerText = total.toLocaleString();
+    cartCountSpan.innerText = cart.reduce((acc,i)=>acc+i.quantity,0);
+    
+    document.querySelectorAll('.remove-item').forEach(el => {
+        el.addEventListener('click', (e) => {
+            const idx = parseInt(el.dataset.index);
+            cart.splice(idx,1);
+            updateCartUI();
+            saveCart();
+            showToast("🗑️ Olib tashlandi");
+        });
+    });
+}
+
+function addToCart(productId, name, price, img) {
+    const existing = cart.find(i => i.id === productId);
+    if(existing) existing.quantity++;
+    else cart.push({ id: productId, name, price, img, quantity: 1 });
+    updateCartUI();
+    saveCart();
+    showToast(`✅ ${name} savatga qo'shildi`);
+}
+
+function showToast(msg) {
+    const toast = document.getElementById("toastMsg");
+    toast.innerText = msg;
+    toast.style.opacity = "1";
+    setTimeout(() => toast.style.opacity = "0", 1800);
+}
+
+function saveCart() { localStorage.setItem("appstore_cart", JSON.stringify(cart)); }
+function loadCart() { const saved = localStorage.getItem("appstore_cart"); if(saved) { cart = JSON.parse(saved); updateCartUI(); } }
+
+document.addEventListener('click', (e) => {
+    if(e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+        const card = e.target.closest('.product-card');
+        if(card){
+            const id = parseInt(card.dataset.id);
+            const name = card.dataset.name;
+            const price = parseInt(card.dataset.price);
+            const img = card.dataset.img;
+            addToCart(id, name, price, img);
+        }
+    }
+});
+
+// Kategoriya filter (card bosganda skroll)
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        const cat = card.dataset.cat;
+        if(cat === 'all') {
+            currentCatFilter = 'all';
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'block');
+        } else {
+            currentCatFilter = cat;
+            const sections = {
+                iphone: 'iphone-cat', samsung: 'samsung-cat', xiaomi: 'xiaomi-cat', macbook: 'macbook-cat',
+                gaming: 'gaming-cat', watch: 'watch-cat', earphones: 'earphones-cat'
+            };
+            for(let [key,id] of Object.entries(sections)) {
+                const el = document.getElementById(id);
+                if(el) el.style.display = (key === cat) ? 'block' : 'none';
+            }
+        }
+        if(cat !== 'all') {
+            document.getElementById(`${cat}-cat`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+});
+
+// narx filtri
+document.querySelectorAll('#extraFilters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#extraFilters .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filterVal = btn.dataset.filter;
+        currentFilter = filterVal;
+        renderProducts();
+    });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', function() {
+    const term = this.value.trim().toLowerCase();
+    document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.dataset.name?.toLowerCase() || '';
+        if(name.includes(term)) card.style.display = '';
+        else card.style.display = 'none';
+    });
+});
+
+// Cart modal
+const cartIcon = document.getElementById('cartIcon');
+const cartModal = document.getElementById('cartModal');
+const closeCart = document.getElementById('closeCart');
+cartIcon.addEventListener('click', () => cartModal.classList.add('open'));
+closeCart.addEventListener('click', () => cartModal.classList.remove('open'));
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+    if(cart.length === 0) { showToast("Savatcha bo'sh"); return; }
+    alert(`Buyurtma qabul qilindi! Jami: ${document.getElementById('cartTotalAmount').innerText} so'm`);
+    cart = [];
+    updateCartUI();
+    saveCart();
+    cartModal.classList.remove('open');
+});
+window.addEventListener('click', (e) => { if(e.target === cartModal) cartModal.classList.remove('open'); });
+
+// back to top
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { backBtn.classList.toggle('show', window.scrollY > 400); });
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+// Swiper init
+new Swiper(".mySwiper", {
+    slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+});
+
+loadCart();
+renderProducts();
+</script>
 </body>
 </html>
-
-

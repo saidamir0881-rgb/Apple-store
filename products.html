@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>AppStore | Mahsulotlar sahifasi</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- <div class="container"> -->
+    <nav>
+        <div class="logo"><img src="./images/4rh3h0we3rpft4ybjp0p9l67bth8tifp.jpg" alt="Logo" onerror="this.src='https://placehold.co/100x40'"></div>
+        <div class="search-box"><input type="text" id="globalSearch" placeholder="Mahsulot nomi bilan qidirish..."></div>
+        <div class="menu"><ul><li><a href="./index.html">Bosh menyu</a></li><li>Aksiyalar</li><li><div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div></li></ul></div>
+    </nav>
+<!-- </div> -->
+
+<div class="container products-page">
+    <!-- Chap: kategoriya va filtrlash -->
+    <aside class="sidebar">
+        <h3><i class="fas fa-th-large"></i> Kategoriyalar</h3>
+        <ul class="category-list" id="categoryList">
+            <li data-cat="all" class="active"><i class="fas fa-mobile-alt"></i> Barchasi</li>
+            <li data-cat="iphone"><i class="fab fa-apple"></i> iPhone</li>
+            <li data-cat="samsung"><i class="fab fa-android"></i> Samsung</li>
+            <li data-cat="xiaomi"><i class="fas fa-microchip"></i> Xiaomi</li>
+            <li data-cat="macbook"><i class="fab fa-apple"></i> Macbook</li>
+            <li data-cat="gaming"><i class="fas fa-laptop-code"></i> Gaming</li>
+            <li data-cat="watch"><i class="fas fa-clock"></i> Aqlli soatlar</li>
+            <li data-cat="earphones"><i class="fas fa-headphones"></i> Quloqchinlar</li>
+        </ul>
+
+        <h3><i class="fas fa-sliders-h"></i> Filtrlar</h3>
+        <div class="filter-group">
+            <label>💰 Narx oralig'i</label>
+            <div class="price-range">
+                <input type="number" id="minPrice" placeholder="Min so'm">
+                <input type="number" id="maxPrice" placeholder="Max so'm">
+            </div>
+        </div>
+        <div class="filter-group">
+            <label>⭐ Reyting</label>
+            <select id="ratingFilter" class="rating-filter">
+                <option value="0">Barcha</option>
+                <option value="4">4+ yulduz</option>
+                <option value="4.5">4.5+ yulduz</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>🏷️ Brend</label>
+            <select id="brandFilter" class="brand-filter">
+                <option value="all">Hammasi</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="Asus">Asus/Lenovo</option>
+            </select>
+        </div>
+        <button id="applyFiltersBtn" class="apply-filter-btn"><i class="fas fa-filter"></i> Filtrlarni qo'llash</button>
+    </aside>
+
+    <!-- O'ng: mahsulotlar va sort -->
+    <main class="products-main">
+        <div class="products-header">
+            <h2 id="categoryTitle">Barcha mahsulotlar</h2>
+            <select id="sortSelect" class="sort-select">
+                <option value="default">Standart</option>
+                <option value="priceAsc">Narxi: Arzondan qimmatga</option>
+                <option value="priceDesc">Narxi: Qimmatdan arzonga</option>
+                <option value="rating">Reyting bo'yicha</option>
+            </select>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </main>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>AppStore Market</h4>
+            <p>Eng sifatli gadjetlar, rasmiy kafolat va tez yetkazib berish.</p>
+            <p><i class="fas fa-map-marker-alt"></i> Toshkent, Chilonzor 9</p>
+            <p><i class="fas fa-phone-alt"></i> +998 98 632 82 82</p>
+        </div>
+        <div class="footer-col">
+            <h4>Foydali linklar</h4>
+            <ul><li>Yetkazib berish</li><li>Kafolat shartlari</li><li>Maxfiylik siyosati</li><li>Biz bilan bog'lanish</li></ul>
+        </div>
+        <div class="footer-col">
+            <h4>To'lov usullari</h4>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-paypal"></i>
+                <i class="fas fa-university"></i> Click / Payme
+                <p style="margin-top: 10px;">Naqd / Plastik / Online</p>
+            </div>
+            <div class="promo-area">
+                <input type="text" id="promoInput" placeholder="Promokod">
+                <button id="applyPromoBtn"><i class="fas fa-ticket-alt"></i></button>
+            </div>
+            <p id="promoMsg" style="font-size: 12px; margin-top: 5px; color:#ffa41c;"></p>
+        </div>
+        <div class="footer-col">
+            <h4>Biz ijtimoiy tarmoqlarda</h4>
+            <i class="fab fa-telegram" style="font-size: 24px; margin-right: 12px;"></i>
+            <i class="fab fa-instagram" style="font-size: 24px; margin-right: 12px;"></i>
+            <i class="fab fa-facebook" style="font-size: 24px;"></i>
+        </div>
+    </div>
+    <div class="copyright">© 2025 AppStore. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<!-- Savatcha modal -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-header"><h3>🛍️ Savatcha</h3><span id="closeCart" style="cursor:pointer; font-size:28px;">&times;</span></div>
+    <div id="cartItemsList" class="cart-items"></div>
+    <div class="cart-total">Jami: <span id="cartTotalAmount">0</span> so'm</div>
+    <button id="checkoutBtn" style="background:#28a745; border:none; padding:12px; border-radius:40px; margin-top:15px; color:white; font-weight:bold;">Rasmiylashtirish</button>
+</div>
+<div id="toastMsg" class="toast">🛒 Qo'shildi</div>
+
+<script src="script.js"></script>
+</body>
+</html>
